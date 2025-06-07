@@ -37,7 +37,28 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/* Login button styles */
+.login-button {
+  border-radius: 18px;
+  border: 2px solid transparent;
+  padding: 0.7em 1em;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgb(11, 118, 11);
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  margin-top: 30px;
+  color: white;
+  width: 50%;
+}
+
+.login-button:hover {
+  background-color: rgb(255, 140, 0);
+}
+
+/* Pagination button styles */
+.pagination-button {
   border-radius: 8px;
   border: 2px solid rgb(47, 136, 47);
   padding: 0.7em 1em;
@@ -52,32 +73,52 @@ button {
   margin-right: 50px;
   color: black;
   width: 20%;
-  border-radius: 0 18px 18px 0;
-
+  background-color: rgb(11, 118, 11) !important;
+  color: white !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  }
+  
+.pagination-button:hover:not(:disabled) {
+  background-color: rgb(255, 140, 0) !important;
 }
 
-.login-button {
-  border-radius: 8px;
-  border: 2px solid transparent;
-  padding: 0.7em 1em;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: rgb(11, 118, 11);
+.pagination-button:disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed !important;
+}
+
+
+.pagination-button:hover:not(:disabled) {
+  background-color: rgb(255, 140, 0) !important;
+}
+
+.pagination-button:disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed !important;
+}
+
+/* Modal close button styles */
+.modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
   cursor: pointer;
-  transition: border-color 0.3s;
-  margin-top: 30px;
-  color: black;
-  width: 50%;
-  border-radius: 18px;
+  color: #333;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s ease;
 }
-button:hover {
-  border-color: #00ff11;
-  border-width: 2px;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.modal-close-button:hover {
+  color: rgb(11, 118, 11);
 }
 
 @media (prefers-color-scheme: light) {
@@ -88,17 +129,12 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  
-  }
 }
 
 .logo-image {
   width: 10%;
   height: auto;
   padding-top: 0;
-
 }
 
 .center-wrapper {
@@ -129,7 +165,6 @@ button:focus-visible {
 
 .white-box-search {
   position: relative;
-  overflow: hidden;
   display: flex;
   width: 90%;
   height: 90%;
@@ -192,14 +227,8 @@ button:focus-visible {
   font-size: 12px;
 }
 
-.row {
-  margin-top: 6%;
-}
-
 .custom-label {
   font-size: 16px;
-  margin-right: 12px;
-  margin-left: 20px;
   font-weight: 500;
   color: black;
 }
@@ -222,6 +251,21 @@ button:focus-visible {
   padding-right: 40px;
 }
 
+.custom-zip-input {
+  font-size: 14px;
+  padding: 6px 10px 6px 10px;
+  color: rgb(75, 73, 73);
+  background-color: rgb(218, 219, 216);
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px auto;
+}
+
 .dropdown {
   height: 150px;
   margin-bottom: 10px;
@@ -234,9 +278,40 @@ button:focus-visible {
 .adopt-header {
   font-size: 24px;
   font-weight: bold;
-  color: rgb(0, 0, 0);
-  padding-top: 30px;
-  width: 300px;
-  background-color: rgb(255, 255, 255);
-  display: block; /* ensures it takes its own line */
+  color: rgb(11, 118, 11);
+  margin-bottom: 20px;
+}
+
+.favorite-button {
+  position: relative;
+  background: none;
+  border: none;
+  font-size: 14px;
+  width: 80px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.favorite-button:hover {
+  background-color: rgba(11, 118, 11, 0.1);
+}
+
+.match-button {
+  background-color: rgb(11, 118, 11) !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 18px !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  transition: all 0.2s ease !important;
+  margin-top: 20px !important;
+}
+
+.match-button:hover {
+  background-color: rgb(255, 140, 0) !important;
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.6) !important;
 }
