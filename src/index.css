@@ -227,6 +227,16 @@ h1 {
   font-size: 12px;
 }
 
+/* Override browser autofill styles */
+.rounded-input:-webkit-autofill,
+.rounded-input:-webkit-autofill:hover,
+.rounded-input:-webkit-autofill:focus,
+.rounded-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .custom-label {
   font-size: 16px;
   font-weight: 500;
