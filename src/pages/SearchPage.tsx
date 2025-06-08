@@ -227,8 +227,21 @@ export default function SearchPage() {
         onRemoveFavorite={(dogId) => setFavorites(prev => prev.filter(dog => dog.id !== dogId))}
         onClearAll={() => setFavorites([])}
       />
-      <div className="search-wrapper" style={{ position: 'relative' }}>
-        <div className="white-box-search" style={{ position: 'relative' }}>
+      <div className="search-wrapper" style={{ 
+        position: 'relative', 
+        width: '1100px', 
+        height: '300px',
+        margin: '0 auto',
+        marginTop: '20px'
+      }}>
+        <div className="white-box-search" style={{ 
+          position: 'relative', 
+          width: '100%', 
+          height: '100%',
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        }}>
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, clipPath: 'inset(0 round 8px)' }}>
             <div 
               className="green-semi-circle"
@@ -256,7 +269,7 @@ export default function SearchPage() {
             ></div>
           </div>
           {/* Row 1: Header */}
-          <div className="adopt-header" style={{ marginBottom: 40, marginTop: 20, marginLeft: 25 }}>
+          <div className="adopt-header" style={{ marginBottom: 70, marginTop: 20, marginLeft: 25 }}>
             Adopt A Dog
           </div>
 
@@ -361,74 +374,91 @@ export default function SearchPage() {
         </div>
       </div>
         <div style={{ 
-          marginTop: '20px', 
-          marginBottom: '5px',
-          marginLeft: '63px', 
-          textAlign: 'left',
+          width: '1100px',
+          margin: '0 auto',
+          padding: '0 60px',
+          boxSizing: 'border-box'
         }}>
-          Total Results: {totalResults}
-        </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '40px',
-            padding: '10px 60px'
-          }}
-        >
-          {dogs.map(dog => (
-            <div
-              key={dog.id}
-              style={{
-                border: '1px solid #ddd',
-                borderRadius: '8px',
-                padding: '15px',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '10px',
-                minHeight: '400px'
-              }}
-            >
+          <div style={{ 
+            marginTop: '20px', 
+            marginBottom: '5px',
+            textAlign: 'left',
+          }}>
+            Total Results: {totalResults}
+          </div>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '40px',
+              padding: '10px 0',
+              minHeight: '100px'
+            }}
+          >
+            {dogs.length === 0 ? (
               <div style={{ 
-                width: '100%',
-                height: 'auto',
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '6px'
+                gridColumn: '1 / -1', 
+                textAlign: 'center', 
+                padding: '50px',
+                color: '#666'
               }}>
-                <img 
-                  src={dog.img} 
-                  alt={dog.name} 
-                  style={{ 
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center'
-                  }} 
-                />
+                No dogs found matching your criteria
               </div>
-              <div>
-                <h3>{dog.name}</h3>
-                <p>Breed: {dog.breed}</p>
-                <p>Age: {dog.age}</p>
-                <p>Zip Code: {dog.zip_code}</p>
-              </div>
-              <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'center' }}>
-                <button
-                  onClick={() => toggleFavorite(dog)}
-                  className="favorite-button"
+            ) : (
+              dogs.map(dog => (
+                <div
+                  key={dog.id}
                   style={{
-                    color: favorites.some(fav => fav.id === dog.id) ? 'rgb(11, 118, 11)' : 'rgb(167, 170, 167)'
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    padding: '15px',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                    minHeight: '400px'
                   }}
                 >
-                  Add Me to Favorites! ★
-                </button>
-              </div>
-            </div>
-          ))}
+                  <div style={{ 
+                    width: '100%',
+                    height: 'auto',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    borderRadius: '6px'
+                  }}>
+                    <img 
+                      src={dog.img} 
+                      alt={dog.name} 
+                      style={{ 
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center'
+                      }} 
+                    />
+                  </div>
+                  <div>
+                    <h3>{dog.name}</h3>
+                    <p>Breed: {dog.breed}</p>
+                    <p>Age: {dog.age}</p>
+                    <p>Zip Code: {dog.zip_code}</p>
+                  </div>
+                  <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'center' }}>
+                    <button
+                      onClick={() => toggleFavorite(dog)}
+                      className="favorite-button"
+                      style={{
+                        color: favorites.some(fav => fav.id === dog.id) ? 'rgb(11, 118, 11)' : 'rgb(167, 170, 167)'
+                      }}
+                    >
+                      Add Me to Favorites! ★
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
-
 
         <div style={{ marginTop: '16px' }}>
           <div style={{ 

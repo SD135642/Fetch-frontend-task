@@ -31,6 +31,8 @@ export default function FavoritesCart({ favorites, onRemoveFavorite, onClearAll 
     setIsLoading(true);
     // Clear favorites immediately
     onClearAll();
+    // Close the cart
+    setIsOpen(false);
     
     try {
       // Get match from API
@@ -144,9 +146,11 @@ export default function FavoritesCart({ favorites, onRemoveFavorite, onClearAll 
               padding: '30px',
               width: '80%',
               maxWidth: '800px',
-              maxHeight: '80vh',
+              maxHeight: '90vh',
               overflowY: 'auto',
-              position: 'relative'
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column'
             }}
           >
             <button
@@ -164,9 +168,10 @@ export default function FavoritesCart({ favorites, onRemoveFavorite, onClearAll 
               <>
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-                  gap: '50px',
-                  padding: '60px'
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+                  gap: '25px',
+                  padding: '30px',
+                  flex: '1 0 auto'
                 }}>
                   {favorites.map(dog => (
                     <div 
@@ -174,10 +179,10 @@ export default function FavoritesCart({ favorites, onRemoveFavorite, onClearAll 
                       style={{
                         border: '1px solid #eee',
                         borderRadius: '8px',
-                        padding: '15px',
+                        padding: '10px',
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '10px',
+                        gap: '8px',
                         position: 'relative',
                         transition: 'all 0.5s ease',
                         opacity: removingId === dog.id ? 0.5 : 1
@@ -185,7 +190,7 @@ export default function FavoritesCart({ favorites, onRemoveFavorite, onClearAll 
                     >
                       <div style={{ 
                         width: '100%',
-                        height: 'auto',
+                        aspectRatio: '1',
                         position: 'relative',
                         overflow: 'hidden',
                         borderRadius: '4px'
@@ -202,10 +207,10 @@ export default function FavoritesCart({ favorites, onRemoveFavorite, onClearAll 
                         />
                       </div>
                       <div>
-                        <h3 style={{ margin: '0 0 5px 0' }}>{dog.name}</h3>
-                        <p style={{ margin: '0 0 5px 0', color: '#666' }}>{dog.breed}</p>
-                        <p style={{ margin: 0 }}>Age: {dog.age}</p>
-                        <p style={{ margin: '5px 0 0 0' }}>Zip: {dog.zip_code}</p>
+                        <h3 style={{ margin: '0 0 4px 0', fontSize: '14px' }}>{dog.name}</h3>
+                        <p style={{ margin: '0 0 2px 0', color: '#666', fontSize: '12px' }}>{dog.breed}</p>
+                        <p style={{ margin: 0, fontSize: '12px' }}>Age: {dog.age}</p>
+                        <p style={{ margin: '2px 0 0 0', fontSize: '12px' }}>Zip: {dog.zip_code}</p>
                       </div>
                       <button
                         onClick={() => handleRemove(dog.id)}
