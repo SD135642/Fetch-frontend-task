@@ -1,54 +1,138 @@
-# React + TypeScript + Vite
+# Fetch Frontend Take-Home Exercise
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application for finding and matching with shelter dogs. Built with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User authentication with name and email
+- Browse and search through a database of shelter dogs
+- Filter dogs by breed
+- Paginated results with customizable sorting
+- Favorite dogs and generate matches
+- Responsive and modern UI design
+- Location-based filtering capabilities
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend Framework**: React 19
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Routing**: React Router DOM
+- **UI Components**: 
+  - React Select for dropdowns
+  - RC Slider for range inputs
+- **Build Tool**: Vite
+- **Linting**: ESLint
+- **Code Quality**: TypeScript strict mode
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📋 Prerequisites
+
+- Node.js (Latest LTS version recommended)
+- npm or yarn package manager
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone [your-repository-url]
+   cd fetch-frontend-task
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 🏗️ Project Structure
+
+```
+src/
+├── api/          # API integration and services
+├── assets/       # Static assets
+├── components/   # Reusable UI components
+├── hooks/        # Custom React hooks
+├── pages/        # Page components
+├── types/        # TypeScript type definitions
+└── main.tsx      # Application entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔑 API Integration
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The application integrates with the Fetch API service (`https://frontend-take-home-service.fetch.com`) and includes the following features:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Authentication endpoints
+- Dog search and filtering
+- Location-based search
+- Match generation
+- Breed listing
+
+## 🎯 Key Features Implementation
+
+### Authentication
+- Secure login with name and email
+- Automatic cookie management for API requests
+- Session handling
+
+### Dog Search
+- Advanced filtering by breed
+- Pagination support
+- Customizable sorting (breed, name, age)
+- Comprehensive dog information display
+
+### Favorites & Matching
+- Add/remove dogs from favorites
+- Generate matches from favorite dogs
+- Interactive UI for managing selections
+
+## 🧪 Development
+
+- Run the development server:
+  ```bash
+  npm run dev
+  ```
+
+- Build for production:
+  ```bash
+  npm run build
+  ```
+
+- Preview production build:
+  ```bash
+  npm run preview
+  ```
+
+- Lint code:
+  ```bash
+  npm run lint
+  ```
+
+## 📝 Notes
+
+- The application uses TypeScript for type safety
+- Tailwind CSS is used for styling
+- The project follows modern React best practices
+- API integration includes proper error handling
+- Responsive design for all screen sizes
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is part of the Fetch Frontend Take-Home Exercise and is intended for evaluation purposes only.
