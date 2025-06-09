@@ -65,8 +65,8 @@ export function useDogSearch(): UseDogSearchReturn {
     const saved = localStorage.getItem('zipCodes');
     return saved ? saved : '';
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isGeneratingMatch, setIsGeneratingMatch] = useState(false);
+  const [isLoading] = useState(false);
+  const [isGeneratingMatch] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [debouncedAgeRange, setDebouncedAgeRange] = useState<[number, number]>(ageRange);
   const [debouncedZipCodes, setDebouncedZipCodes] = useState<string>(zipCodes);
@@ -149,6 +149,11 @@ export function useDogSearch(): UseDogSearchReturn {
         setTotalResults(data.total);
         setNextQuery(data.next ?? null);
         setPrevQuery(data.prev ?? null);
+        
+        // Reset pagination if no results
+        if (data.resultIds.length === 0 && from > 0) {
+          setFrom(0);
+        }
       } catch (err) {
         setError('Failed to search dogs');
       }

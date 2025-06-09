@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import type { Dog } from '../types';
 import Button from './Button';
 import LoadingSpinner from './LoadingSpinner';
-import MatchPopup from './MatchPopup';
 
 interface FavoritesCartProps {
   favorites: Dog[];
@@ -87,10 +86,6 @@ export default function FavoritesCart({
     }
   };
 
-  const handleAdopt = () => {
-    window.open('https://www.petfinder.com/dogs-and-puppies/', '_blank');
-  };
-
   // Close cart when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -107,23 +102,7 @@ export default function FavoritesCart({
     <>
       <button
         onClick={() => setIsOpen(true)}
-        style={{
-          position: 'fixed',
-          top: '12px',
-          right: '12px',
-          padding: '6px 10px',
-          backgroundColor: 'rgb(11, 118, 11)',
-          color: 'white',
-          border: 'none',
-          borderRadius: '18px',
-          cursor: 'pointer',
-          fontSize: '14px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          zIndex: 1000,
-          transition: 'background-color 0.2s'
-        }}
+        className="favorites-cart-button"
         onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgb(255, 140, 0)'}
         onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgb(11, 118, 11)'}
       >
@@ -179,15 +158,7 @@ export default function FavoritesCart({
               }}>
                 <button
                   onClick={() => setActiveTab('favorites')}
-                  style={{
-                    padding: '10px 20px',
-                    border: 'none',
-                    background: 'none',
-                    cursor: 'pointer',
-                    borderBottom: activeTab === 'favorites' ? '2px solid rgb(11, 118, 11)' : 'none',
-                    color: activeTab === 'favorites' ? 'rgb(11, 118, 11)' : '#666',
-                    fontWeight: activeTab === 'favorites' ? 'bold' : 'normal'
-                  }}
+                  className={`favorites-tab-button ${activeTab === 'favorites' ? '' : 'inactive'}`}
                 >
                   Favorites ({favorites.length})
                 </button>
@@ -272,24 +243,7 @@ export default function FavoritesCart({
                             </div>
                             <button
                               onClick={() => handleRemove(dog.id)}
-                              style={{
-                                background: 'none',
-                                border: '2px solid rgb(11, 118, 11)',
-                                color: removingId === dog.id ? '#999' : 'rgb(11, 118, 11)',
-                                cursor: 'pointer',
-                                fontSize: '20px',
-                                width: '36px',
-                                height: '36px',
-                                borderRadius: '50%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                paddingBottom: 4,
-                                position: 'absolute',
-                                bottom: '15px',
-                                right: '15px',
-                                transition: 'all 0.2s ease'
-                              }}
+                              className="handle-remove-button"
                             >
                               ★
                             </button>
@@ -393,28 +347,7 @@ export default function FavoritesCart({
                                   window.open(`https://www.petfinder.com/search/dogs-for-adoption/?breed=${encodeURIComponent(dog.breed)}&location=${dog.zip_code}`, '_blank');
                                 }}
                                 variant="primary"
-                                style={{ 
-                                  backgroundColor: 'rgb(11, 118, 11)',
-                                  color: 'white',
-                                  border: 'none',
-                                  padding: '8px 16px',
-                                  borderRadius: '18px',
-                                  cursor: 'pointer',
-                                  fontSize: '14px',
-                                  fontWeight: 'bold',
-                                  transition: 'all 0.2s ease',
-                                  marginTop: '10px',
-                                  width: '60%',
-                                  marginLeft: 'auto',
-                                  marginRight: 'auto',
-                                  display: 'block'
-                                }}
-                                onMouseOver={(e: React.MouseEvent<HTMLButtonElement>) => {
-                                  e.currentTarget.style.backgroundColor = 'rgb(255, 140, 0)';
-                                }}
-                                onMouseOut={(e: React.MouseEvent<HTMLButtonElement>) => {
-                                  e.currentTarget.style.backgroundColor = 'rgb(11, 118, 11)';
-                                }}
+                                className="adopt-now-button"
                               >
                                 Adopt Now
                               </Button>
@@ -454,18 +387,7 @@ export default function FavoritesCart({
       
       {matchedDog && (
         <div 
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 2000
-          }}
+          className="matched-dog-modal-backdrop"
           onClick={(e) => {
             // Only close if clicking the backdrop, not the modal content
             if (e.target === e.currentTarget) {
@@ -509,7 +431,6 @@ export default function FavoritesCart({
             <p style={{ margin: '0 0 20px 0' }}>Zip: {matchedDog.zip_code}</p>
             <Button
               onClick={() => {
-                const searchQuery = encodeURIComponent(`${matchedDog.breed} dog adoption ${matchedDog.zip_code}`);
                 window.open(`https://www.petfinder.com/search/dogs-for-adoption/?breed=${encodeURIComponent(matchedDog.breed)}&location=${matchedDog.zip_code}`, '_blank');
               }}
               variant="primary"
