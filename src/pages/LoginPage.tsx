@@ -11,9 +11,24 @@ const LoginPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [isNameValid, setIsNameValid] = useState(true);
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        // Check if the value contains any numbers
+        const hasNumbers = /\d/.test(value);
+        setIsNameValid(!hasNumbers);
+        if (!hasNumbers) {
+            setName(value);
+        }
+    };
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!isNameValid) {
+            setError('Name cannot contain numbers');
+            return;
+        }
         setLoading(true);
         setError(null);
     
@@ -57,9 +72,23 @@ const LoginPage: React.FC = () => {
                             placeholder="Name" 
                             className="rounded-input"
                             value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={handleNameChange}
+                            style={{ 
+                                border: isNameValid ? '1px solid #ccc' : '1px solid #ff6b6b'
+                            }}
                             required
-                        /><br/>
+                        />
+                        {!isNameValid && (
+                            <div style={{ 
+                                color: '#ff6b6b', 
+                                fontSize: '12px', 
+                                marginTop: '4px',
+                                marginLeft: '4px'
+                            }}>
+                                Name cannot contain numbers
+                            </div>
+                        )}
+                        <br/>
                         <input 
                             type="email" 
                             id="email" 

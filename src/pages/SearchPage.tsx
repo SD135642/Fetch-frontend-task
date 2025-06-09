@@ -26,7 +26,8 @@ export default function SearchPage() {
     goNext,
     goPrev,
     isGeneratingMatch,
-    error
+    error,
+    isZipCodeValid
   } = useDogSearch();
 
   const {
@@ -66,6 +67,7 @@ export default function SearchPage() {
         onZipCodesChange={setZipCodes}
         sortOrder={sortOrder}
         onSortOrderChange={setSortOrder}
+        isZipCodeValid={isZipCodeValid}
       />
 
       <div style={{ 

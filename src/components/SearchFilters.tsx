@@ -12,6 +12,7 @@ interface SearchFiltersProps {
   onZipCodesChange: (value: string) => void;
   sortOrder: 'asc' | 'desc' | 'nameAsc' | 'nameDesc' | 'ageAsc' | 'ageDesc';
   onSortOrderChange: (value: 'asc' | 'desc' | 'nameAsc' | 'nameDesc' | 'ageAsc' | 'ageDesc') => void;
+  isZipCodeValid: boolean;
 }
 
 export default function SearchFilters({
@@ -24,6 +25,7 @@ export default function SearchFilters({
   onZipCodesChange,
   sortOrder,
   onSortOrderChange,
+  isZipCodeValid
 }: SearchFiltersProps) {
   const breedOptions = breeds.map(breed => ({ value: breed, label: breed }));
 
@@ -150,8 +152,24 @@ export default function SearchFilters({
               onChange={e => onZipCodesChange(e.target.value)}
               placeholder="e.g. 90210, 10001"
               className="custom-zip-input"
-              style={{ width: '100%', borderRadius: 8, padding: '8px', fontSize: 16, border: '1px solid #ccc' }}
+              style={{ 
+                width: '100%', 
+                borderRadius: 8, 
+                padding: '8px', 
+                fontSize: 16, 
+                border: isZipCodeValid ? '1px solid #ccc' : '1px solid #ff6b6b'
+              }}
             />
+            {!isZipCodeValid && (
+              <div style={{ 
+                color: '#ff6b6b', 
+                fontSize: '12px', 
+                marginTop: '4px',
+                marginLeft: '4px'
+              }}>
+                Please enter valid 5-digit zip codes
+              </div>
+            )}
           </div>
         </div>
 

@@ -24,6 +24,7 @@ interface UseDogSearchReturn {
   isLoading: boolean;
   isGeneratingMatch: boolean;
   error: string | null;
+  isZipCodeValid: boolean;
 }
 
 function isValidZipCode(zip: string): boolean {
@@ -71,6 +72,7 @@ export function useDogSearch(): UseDogSearchReturn {
   const [debouncedAgeRange, setDebouncedAgeRange] = useState<[number, number]>(ageRange);
   const [debouncedZipCodes, setDebouncedZipCodes] = useState<string>(zipCodes);
   const [lastValidZipCodes, setLastValidZipCodes] = useState<string>(zipCodes);
+  const [isZipCodeValid, setIsZipCodeValid] = useState(true);
 
   // Fetch breeds on mount
   useEffect(() => {
@@ -115,13 +117,16 @@ export function useDogSearch(): UseDogSearchReturn {
       if (hasValidZipCodes(zipCodes)) {
         setDebouncedZipCodes(zipCodes);
         setLastValidZipCodes(zipCodes);
+        setIsZipCodeValid(true);
       } else if (zipCodes === '') {
         // If zip codes is empty, clear the results
         setDebouncedZipCodes('');
         setLastValidZipCodes('');
+        setIsZipCodeValid(true);
       } else {
         // If invalid, keep using the last valid zip codes
         setDebouncedZipCodes(lastValidZipCodes);
+        setIsZipCodeValid(false);
       }
     }, 500);
 
@@ -220,7 +225,8 @@ export function useDogSearch(): UseDogSearchReturn {
     goPrev,
     isLoading,
     isGeneratingMatch,
-    error
+    error,
+    isZipCodeValid
   };
 }
 
