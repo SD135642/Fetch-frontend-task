@@ -2,7 +2,7 @@
 
 A modern web application for finding and matching with shelter dogs. Built with React, TypeScript, and Tailwind CSS.
 
-Live site: [https://fetch-dogs-app.vercel.app](https://fetch-dogs-app.vercel.app)
+Live site: [[https://fetch-dogs-app.vercel.app](https://fetch-dogs-app.vercel.app)](https://fetch-frontend-task.vercel.app/)
 
 
 ## 🚀 Features
