@@ -186,8 +186,9 @@ h1 {
 }
 
 .green-semi-circle {
+  overflow: hidden;
   position: absolute;
-  top: -40px;
+  top: -30px;
   right: -60px;
   width: 240px;
   height: 240px;

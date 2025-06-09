@@ -388,6 +388,36 @@ export default function FavoritesCart({
                               <p style={{ margin: '0 0 2px 0', color: '#666', fontSize: '12px' }}>{dog.breed}</p>
                               <p style={{ margin: 0, fontSize: '12px' }}>Age: {dog.age}</p>
                               <p style={{ margin: '2px 0 0 0', fontSize: '12px' }}>Zip: {dog.zip_code}</p>
+                              <Button
+                                onClick={() => {
+                                  window.open(`https://www.petfinder.com/search/dogs-for-adoption/?breed=${encodeURIComponent(dog.breed)}&location=${dog.zip_code}`, '_blank');
+                                }}
+                                variant="primary"
+                                style={{ 
+                                  backgroundColor: 'rgb(11, 118, 11)',
+                                  color: 'white',
+                                  border: 'none',
+                                  padding: '8px 16px',
+                                  borderRadius: '18px',
+                                  cursor: 'pointer',
+                                  fontSize: '14px',
+                                  fontWeight: 'bold',
+                                  transition: 'all 0.2s ease',
+                                  marginTop: '10px',
+                                  width: '60%',
+                                  marginLeft: 'auto',
+                                  marginRight: 'auto',
+                                  display: 'block'
+                                }}
+                                onMouseOver={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                  e.currentTarget.style.backgroundColor = 'rgb(255, 140, 0)';
+                                }}
+                                onMouseOut={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                  e.currentTarget.style.backgroundColor = 'rgb(11, 118, 11)';
+                                }}
+                              >
+                                Adopt Now
+                              </Button>
                             </div>
                           </div>
                         ))}
@@ -493,6 +523,12 @@ export default function FavoritesCart({
                 fontSize: '16px',
                 fontWeight: 'bold',
                 transition: 'all 0.2s ease'
+              }}
+              onMouseOver={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.currentTarget.style.backgroundColor = 'rgb(255, 140, 0)';
+              }}
+              onMouseOut={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.currentTarget.style.backgroundColor = 'rgb(11, 118, 11)';
               }}
             >
               Adopt Now

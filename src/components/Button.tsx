@@ -8,6 +8,8 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary';
   className?: string;
   style?: CSSProperties;
+  onMouseOver?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onMouseOut?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function Button({ 
@@ -16,7 +18,9 @@ export default function Button({
   children, 
   variant = 'primary',
   className = '',
-  style = {}
+  style = {},
+  onMouseOver,
+  onMouseOut
 }: ButtonProps) {
   return (
     <button
@@ -36,6 +40,8 @@ export default function Button({
         opacity: disabled ? 0.6 : 1,
         ...style
       }}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
     >
       {children}
     </button>
