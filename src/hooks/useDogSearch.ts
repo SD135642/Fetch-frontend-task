@@ -184,6 +184,7 @@ export function useDogSearch(): UseDogSearchReturn {
     if (nextQuery) {
       const urlParams = new URLSearchParams(nextQuery);
       setFrom(Number(urlParams.get('from') ?? 0));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -191,6 +192,7 @@ export function useDogSearch(): UseDogSearchReturn {
     if (prevQuery) {
       const urlParams = new URLSearchParams(prevQuery);
       setFrom(Number(urlParams.get('from') ?? 0));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
